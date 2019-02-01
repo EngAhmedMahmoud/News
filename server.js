@@ -12,6 +12,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//serving static files
+app.use(express.static('assets'));
+
 //handel any error happen
 app.use((req, res, next) => {
     let error = new Error;
@@ -31,6 +34,6 @@ app.listen(PORT, (error) => {
     if (error) {
         console.log(error);
     } else {
-        console.log(`Server Running at ${URL}/${PORT}`);
+        console.log(`Server Running at ${URL}:${PORT}`);
     }
 })
