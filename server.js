@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const PORT = process.env.SERVER_PORT || 5000;
 const URL = process.env.SERVER_URL || "http://127.0.0.1";
 
+//database connection
+require("./utils/db.con");
 //create app
 const app = express();
 
@@ -15,6 +17,9 @@ app.use(bodyParser.json());
 //serving static files
 app.use(express.static('assets'));
 
+//set view engine
+app.set('view engine', 'pug');
+
 //handel any error happen
 app.use((req, res, next) => {
     let error = new Error;
@@ -23,10 +28,7 @@ app.use((req, res, next) => {
     next(error);
 });
 app.use((error, req, res, next) => {
-    res.status(error.code || 500).json({
-        code: error.code,
-        msg: error.msg
-    })
+    res.render("./partials/error.pug");
 });
 
 //running the server
