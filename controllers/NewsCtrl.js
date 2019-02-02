@@ -26,10 +26,10 @@ exports.add = (req, res, next) => {
 exports.index = (req, res, next) => {
     news.find()
         .then((news) => {
-            res.render("pages/index", { news: news });
+            res.render(__dirname + "/../views/pages/index", { news: news });
         })
         .catch((error) => {
-            res.render("partials/custom", { error: error });
+            res.render(__dirname + "/../views/partials/custom", { error: error });
         });
 }
 
