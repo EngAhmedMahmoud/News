@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const PORT = process.env.SERVER_PORT || 5000;
 const URL = process.env.SERVER_URL || "http://127.0.0.1";
-
+const newsRouter = require("./routes/newsRoute");
 //database connection
 require("./utils/db.con");
 //create app
@@ -20,6 +20,10 @@ app.use(express.static('assets'));
 //set view engine
 app.set('view engine', 'pug');
 
+
+//news routes
+app.use("/", newsRouter);
+
 //handel any error happen
 app.use((req, res, next) => {
     let error = new Error;
@@ -28,7 +32,7 @@ app.use((req, res, next) => {
     next(error);
 });
 app.use((error, req, res, next) => {
-    res.render("./partials/error.pug");
+    res.render("./partials/error.pug", { error: error });
 });
 
 //running the server
