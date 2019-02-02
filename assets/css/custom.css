@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.footer{
+    position: fixed;;
+    width:100%;
+    border:0px solid black;
+    background:black;
+    color:white;
+    bottom: 0px;
+    padding:20px 0px;
+    }
+p{
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}

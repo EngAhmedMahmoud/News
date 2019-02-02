@@ -24,9 +24,12 @@ exports.add = (req, res, next) => {
 }
 //index page
 exports.index = (req, res, next) => {
+    let styles = ['custom.css'];
+    let jsCode = [];
+
     news.find()
         .then((news) => {
-            res.render(__dirname + "/../views/pages/index", { news: news });
+            res.render(__dirname + "/../views/pages/index", { news: news, styles: styles, jsCode: jsCode });
         })
         .catch((error) => {
             res.render(__dirname + "/../views/partials/custom", { error: error });
